@@ -1,16 +1,19 @@
+import os
 import cv2
-import cvzone
 import numpy
+import cvzone
 from cvzone.HandTrackingModule import HandDetector
-cp = cvzone.VideoCapture(0)
+
+
+cp = cv2.VideoCapture(0)
 cp.set(3, 1280)
 cp.set(4, 720)
 dtr = HandDetector(detectionCon=0.8, maxHands=2)
-imgbg = cv2.imread('')
-bllimg = cv2.imread('', cv2.IMREAD_UNCHANGED)
-goimg = cv2.imread('')
-p1img = cv2.imread('', cv2.IMREAD_UNCHANGED)
-p2img = cv2.imread('', cv2.IMREAD_UNCHANGED)
+imgbg = cv2.imread(os.getcwd()+'\\background.png')
+bllimg = cv2.imread(os.getcwd()+'\\token.png', cv2.IMREAD_UNCHANGED)
+goimg = cv2.imread(os.getcwd()+'\\GameOver.png')
+p1img = cv2.imread(os.getcwd()+'\\striker1.png', cv2.IMREAD_UNCHANGED)
+p2img = cv2.imread(os.getcwd()+'\\striker2.png', cv2.IMREAD_UNCHANGED)
 blpos = [100, 100]
 speedX = 15
 speedY = 15
@@ -20,8 +23,8 @@ while True:
     _, img = cp.read()
     img = cv2.flip(img, 1)
     r_img = img.copy()
-    hds, img = dtr.findhands(img, fliptype=False)
-    img = cv2.addWeighted(img, 0.2, imgbg, 0.8, 0)
+    hds, img = dtr.findHands(img)
+    img = cv2.addWeighted(img, 0.2, imgbg, 1, 0)
     if hds:
         for hd in hds:
             x, y, w, h = hd['bbox']
@@ -65,4 +68,5 @@ while True:
         speedY = 15
         gameOver = False
         score = [0, 0]
-        goimg = cv2.imread('')
+        goimg = cv2.imread(
+            'D:\\VSCode\\Python\\Ping Pong With Gestures\\GameOver.png')
