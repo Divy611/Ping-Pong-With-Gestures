@@ -69,4 +69,4 @@ while True:
         gameOver = False
         score = [0, 0]
         goimg = cv2.imread(
-            'D:\\VSCode\\Python\\Ping Pong With Gestures\\GameOver.png')
+            os.getcwd()+'\\GameOver.png')
