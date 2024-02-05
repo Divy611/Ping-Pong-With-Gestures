@@ -9,11 +9,11 @@ cp = cv2.VideoCapture(0)
 cp.set(3, 1280)
 cp.set(4, 720)
 dtr = HandDetector(detectionCon=0.8, maxHands=2)
-imgbg = cv2.imread(os.getcwd()+'\\background.png')
-bllimg = cv2.imread(os.getcwd()+'\\token.png', cv2.IMREAD_UNCHANGED)
-goimg = cv2.imread(os.getcwd()+'\\GameOver.png')
-p1img = cv2.imread(os.getcwd()+'\\striker1.png', cv2.IMREAD_UNCHANGED)
-p2img = cv2.imread(os.getcwd()+'\\striker2.png', cv2.IMREAD_UNCHANGED)
+imgbg = cv2.imread(os.getcwd()+'\\images\\background.png')
+bllimg = cv2.imread(os.getcwd()+'\\images\\token.png', cv2.IMREAD_UNCHANGED)
+goimg = cv2.imread(os.getcwd()+'\\images\\GameOver.png')
+p1img = cv2.imread(os.getcwd()+'\\images\\striker1.png', cv2.IMREAD_UNCHANGED)
+p2img = cv2.imread(os.getcwd()+'\\images\\striker2.png', cv2.IMREAD_UNCHANGED)
 blpos = [100, 100]
 speedX = 15
 speedY = 15
@@ -43,7 +43,7 @@ while True:
                     speedX = -speedX
                     blpos[0] -= 30
                     score[1] = 1
-    if blpos[0] < 40 or blpos > 1200:
+    if blpos[0] < 40 or blpos[0] > 1200:
         gameOver = True
     if gameOver:
         img = goimg
